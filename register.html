@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cinevision+ Cinema - Login and Registration</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.16/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-800 text-white font-sans">
+
+  <!-- Header Section -->
+  <header class="bg-gray-900 py-5">
+      <div class="max-w-6xl mx-auto flex items-center justify-between flex-wrap">
+          <h1 class="text-2xl">Cinema+</h1>
+          <nav class="flex items-center">
+              <a href="home.html" class="text-white mx-2 hover:text-yellow-400">Home</a>
+              <a href="#movies" class="text-white mx-2 hover:text-yellow-400">Movies</a>
+              <a href="#showtimes" class="text-white mx-2 hover:text-yellow-400">Showtimes</a>
+              <a href="#about" class="text-white mx-2 hover:text-yellow-400">About</a>
+              <a href="#contact" class="text-white mx-2 hover:text-yellow-400">Contact</a>
+          </nav>
+      </div>
+  </header>
+
+  <div class="max-w-6xl mx-auto py-10 flex justify-center">
+      <div class="bg-gray-700 rounded-lg p-8 shadow-lg max-w-md w-full">
+          <h2 id="registration-header" class="font-bold text-lg mb-2">Register</h2>
+          <form id="registration-form" class="grid grid-cols-1 gap-4">
+              <div class="grid grid-cols-2 gap-4 mb-4">
+                  <div class="form-group">
+                      <label for="name" class="font-bold mb-1">Name:</label>
+                      <input type="text" id="name" name="name" class="border p-2 w-full" required>
+                  </div>
+                  <div class="form-group">
+                      <label for="email" class="font-bold mb-1">Email:</label>
+                      <input type="email" id="email" name="email" class="border p-2 w-full" required>
+                  </div>
+              </div>
+              <div class="grid grid-cols-2 gap-4 mb-4">
+                  <div class="form-group">
+                      <label for="phone" class="font-bold mb-1">Phone Number:</label>
+                      <input type="tel" id="phone" name="phone" class="border p-2 w-full" required>
+                  </div>
+                  <div class="form-group">
+                      <label for="profile-picture" class="font-bold mb-1">Profile Picture:</label>
+                      <input type="file" id="profile-picture" name="profile-picture" class="border p-2 w-full" accept="image/*" required>
+                  </div>
+              </div>
+              <div class="grid grid-cols-2 gap-4 mb-4">
+                  <div class="form-group">
+                      <label for="resume" class="font-bold mb-1">Resume:</label>
+                      <input type="file" id="resume" name="resume" class="border p-2 w-full" accept=".pdf,.doc,.docx" required>
+                  </div>
+                  <div class="form-group">
+                      <label for="message" class="font-bold mb-1">Message:</label>
+                      <textarea id="message" name="message" class="border p-2 w-full" required></textarea>
+                  </div>
+              </div>
+              <div>
+                  <button type="button" class="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600" onclick="redirectTo('success.html')">Register</button>
+                  already have an account? <button type="button" class="text-blue-500" onclick="showLoginForm()">Login</button>
+              </div>
+          </form>
+
+          <h2 id="login-header" class="font-bold text-lg mb-2 hidden">Login</h2>
+          <form id="login-form" class="grid grid-cols-1 gap-4 hidden">
+              <div class="form-group mb-4">
+                  <label for="login-email" class="font-bold mb-1">Email:</label>
+                  <input type="email" id="login-email" name="login-email" class="border p-2 w-full" required>
+              </div>
+              <div class="form-group mb-4">
+                  <label for="login-password" class="font-bold mb-1">Password:</label>
+                  <input type="password" id="login-password" name="login-password" class="border p-2 w-full" required>
+              </div>
+              <div>
+                  <button type="button" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600" onclick="login()">Login</button>
+                  <button type="button" class="text-blue-500" onclick="showRegistrationForm()">Back to Register</button>
+              </div>
+          </form>
+      </div>
+  </div>
+
+  <!-- Footer Section -->
+  <footer class="bg-gray-800 py-5">
+      <div class="max-w-6xl mx-auto flex justify-between items-center">
+          <p class="text-gray-200">© 2024 Cinema+. Department of Computer Science.</p>
+          <div class="space-x-4">
+              <a href="#" class="text-gray-200 hover:text-blue-600">Facebook</a>
+              <a href="#" class="text-gray-200 hover:text-blue-600">Twitter</a>
+              <a href="#" class="text-gray-200 hover:text-pink-600">Instagram</a>
+              <a href="#" class="text-gray-200 hover:text-red-600">YouTube</a>
+          </div>
+      </div>
+  </footer>
+
+  <script>
+      function redirectTo(url) {
+          window.location.href = url;
+      }
+
+      function showLoginForm() {
+          document.getElementById('registration-form').classList.add('hidden');
+          document.getElementById('login-header').classList.remove('hidden');
+          document.getElementById('login-form').classList.remove('hidden');
+      }
+
+      function showRegistrationForm() {
+          document.getElementById('registration-form').classList.remove('hidden');
+          document.getElementById('login-header').classList.add('hidden');
+          document.getElementById('login-form').classList.add('hidden');
+      }
+
+      function login() {
+          alert('Login functionality to be implemented.');
+      }
+  </script>
+</body>
+</html>
