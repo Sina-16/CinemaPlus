@@ -7,7 +7,7 @@ $database = new Database();
 $conn = $database->getConnection();
 $movieController = new MovieController($conn);
 
-// Fetch all movies
+
 $movies = $movieController->getAllMovies();
 ?>
 
@@ -39,18 +39,18 @@ $movies = $movieController->getAllMovies();
 </head>
 <body class="bg-gray-100">
 
-    <!-- Header -->
+
     <?php include 'head.php'; ?>
 
     <main class="container mx-auto p-4">
         <?php
-        // Display success or error message
+     
         if (isset($_SESSION['message'])) {
             echo "<div class='bg-green-500 text-white p-2 rounded text-center font-bold blink'>" . $_SESSION['message'] . "</div>";
             unset($_SESSION['message']);
         }
 
-        // Check if there are no movies
+    
         if (empty($movies)) {
             echo "<div class='text-red-500 text-center font-bold p-4 text-2xl blink'>No movies available.</div>";
             echo "<div class='text-center mt-4'>";

@@ -8,7 +8,7 @@ $conn = $database->getConnection();
 $movieController = new MovieController($conn);
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    // Validate and sanitize input
+    
     $data = [
         'title' => htmlspecialchars(trim($_POST['title'])),
         'genre' => htmlspecialchars(trim($_POST['genre'])),
@@ -20,27 +20,27 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         'image_path' => ''
     ];
 
-    // Ensure the uploads directory exists
+    
     $uploadDir = "uploads/";
     if (!is_dir($uploadDir)) {
-        mkdir($uploadDir, 0755, true); // Create the directory if it doesn't exist
+        mkdir($uploadDir, 0755, true); 
     }
 
-    // Check for upload errors
+   
     if ($_FILES['image']['error'] !== UPLOAD_ERR_OK) {
         $_SESSION['message'] = "File upload error: " . $_FILES['image']['error'];
         header("Location: addMovie.php");
         exit();
     }
 
-    // Check file size (limit to 2MB)
+   
     if ($_FILES['image']['size'] > 2000000) {
         $_SESSION['message'] = "File is too large. Maximum size is 2MB.";
         header("Location: addMovie.php");
         exit();
     }
 
-    // Check file type
+
     $allowedTypes = ['jpg', 'jpeg', 'png', 'gif'];
     $imageFileType = strtolower(pathinfo($_FILES['image']['name'], PATHINFO_EXTENSION));
     if (!in_array($imageFileType, $allowedTypes)) {
@@ -49,7 +49,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         exit();
     }
 
-    // Check MIME type
+
     $finfo = finfo_open(FILEINFO_MIME_TYPE);
     $mimeType = finfo_file($finfo, $_FILES['image']['tmp_name']);
     finfo_close($finfo);
@@ -60,13 +60,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         exit();
     }
 
-    // Generate a new unique file name
-    $newFileName = strtolower(str_replace(' ', '_', $data['title'])) . '.' . $imageFileType; // Use movie title for the file name
+
+    $newFileName = strtolower(str_replace(' ', '_', $data['title'])) . '.' . $imageFileType; 
     $targetFile = $uploadDir . $newFileName;
 
     if (move_uploaded_file($_FILES['image']['tmp_name'], $targetFile)) {
-        // File upload successful, add movie to database
-        $data['image_path'] = $newFileName; // Store the new file name in the database
+        
+        $data['image_path'] = $newFileName; 
         if ($movieController->addMovie($data)) {
             $_SESSION['message'] = "Movie added successfully!";
         } else {
@@ -76,7 +76,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $_SESSION['message'] = "Failed to upload image.";
     }
 
-    // Redirect to avoid resubmission
+    
     header("Location: addMovie.php");
     exit();
 }

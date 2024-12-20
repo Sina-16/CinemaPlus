@@ -16,15 +16,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         'release_date' => $_POST['release_date'],
         'description' => $_POST['description'],
         'duration' => $_POST['duration'],
-        'image_path' => $_FILES['image']['name'] // Handle file upload appropriately
+        'image_path' => $_FILES['image']['name'] 
     ];
 
-    // Move the uploaded file to the uploads directory if a new image is uploaded
+
     if (!empty($_FILES['image']['name'])) {
         $uploadDir = 'uploads/';
         move_uploaded_file($_FILES['image']['tmp_name'], $uploadDir . $_FILES['image']['name']);
     } else {
-        // Keep the existing image path if no new image is uploaded
+       
         unset($data['image_path']);
     }
 
